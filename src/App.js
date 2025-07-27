@@ -358,7 +358,7 @@ const HeroSection = () => (
                 <div className="relative flex justify-center items-center h-[26rem] md:h-[32rem]">
                     <BrushStrokeIcon />
                     <img 
-                        src="https://Pratik-Singh-web.github.io/PratikPortfolio/profile.png" 
+                        src={process.env.PUBLIC_URL + "/profile.png"} 
                         alt="Pratik Singh" 
                         className="relative w-80 h-80 md:w-[26rem] md:h-[26rem] rounded-full object-cover shadow-2xl border-8 border-white dark:border-slate-800"
                     />
