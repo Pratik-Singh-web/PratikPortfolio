@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/PratikPortfolio/static/css/main.7895508c.css",
+    "main.js": "/PratikPortfolio/static/js/main.32c7cc90.js",
+    "static/js/453.a1accff8.chunk.js": "/PratikPortfolio/static/js/453.a1accff8.chunk.js",
+    "index.html": "/PratikPortfolio/index.html",
+    "main.7895508c.css.map": "/PratikPortfolio/static/css/main.7895508c.css.map",
+    "main.32c7cc90.js.map": "/PratikPortfolio/static/js/main.32c7cc90.js.map",
+    "453.a1accff8.chunk.js.map": "/PratikPortfolio/static/js/453.a1accff8.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7895508c.css",
+    "static/js/main.32c7cc90.js"
+  ]
+}
