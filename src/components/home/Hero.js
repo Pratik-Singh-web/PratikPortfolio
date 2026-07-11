@@ -61,91 +61,69 @@ export const Hero = ({ onOpenContact }) => (
           </div>
         </div>
 
-        {/* ─── right side — clean circular portrait ───────────────── */}
+        {/* ─── right side — frameless feathered portrait ─────────────── */}
         <Portrait />
       </div>
     </div>
   </section>
 );
 
+// Portrait v4 — completely frameless.
+// The photo edges dissolve into the page via a soft radial mask, with a
+// massive faded serif letterform behind and a floating signature block.
 const Portrait = () => (
-  <div className="relative mx-auto flex w-full max-w-md items-center justify-center py-6 lg:py-0">
-    {/* Massive faded "P" behind everything */}
+  <div className="relative mx-auto flex h-[36rem] w-full max-w-lg items-center justify-center">
+    {/* Giant serif letterform behind everything */}
     <div
       aria-hidden
-      className="pointer-events-none absolute inset-0 -z-10 flex select-none items-center justify-center overflow-hidden"
+      className="pointer-events-none absolute inset-0 flex select-none items-center justify-center overflow-hidden"
     >
-      <span className="font-display text-[26rem] font-black leading-none tracking-tighter text-ink-50 opacity-[0.04]">
-        P
+      <span className="font-display text-[32rem] font-black leading-none tracking-tighter text-ink-50 opacity-[0.05]">
+        p.
       </span>
     </div>
 
-    {/* Soft accent glow */}
+    {/* Soft accent light behind head area */}
     <div
-      className="pointer-events-none absolute inset-8 -z-10 rounded-full opacity-60 blur-3xl"
+      aria-hidden
+      className="pointer-events-none absolute left-1/2 top-1/3 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full opacity-70 blur-3xl"
       style={{
         background:
-          "radial-gradient(circle at 40% 40%, rgba(94,234,212,0.35), transparent 60%)",
+          "radial-gradient(circle, rgba(94,234,212,0.4), rgba(244,114,182,0.25) 50%, transparent 75%)",
       }}
     />
 
-    <div className="relative aspect-square w-[22rem] md:w-[26rem]">
-      {/* Rotating dashed ring */}
-      <svg
-        viewBox="0 0 200 200"
-        className="absolute inset-0 h-full w-full"
-        style={{ animation: "spin 40s linear infinite" }}
-      >
-        <circle
-          cx="100"
-          cy="100"
-          r="98"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="0.4"
-          strokeDasharray="2 4"
-          className="text-accent opacity-60"
-        />
-      </svg>
+    {/* The photo — feathered edges, no frame at all */}
+    <img
+      src={profile.profileImage}
+      alt={profile.name}
+      className="relative h-[34rem] w-auto max-w-full object-contain"
+      style={{
+        maskImage:
+          "radial-gradient(ellipse 65% 75% at 50% 45%, black 40%, transparent 92%)",
+        WebkitMaskImage:
+          "radial-gradient(ellipse 65% 75% at 50% 45%, black 40%, transparent 92%)",
+      }}
+    />
 
-      {/* Counter-rotating serif text ring */}
-      <svg
-        viewBox="0 0 200 200"
-        className="absolute inset-0 h-full w-full"
-        style={{ animation: "spin 30s linear infinite reverse" }}
-      >
-        <defs>
-          <path
-            id="hero-text-path"
-            d="M 100,100 m -88,0 a 88,88 0 1,1 176,0 a 88,88 0 1,1 -176,0"
-            fill="none"
-          />
-        </defs>
-        <text className="fill-ink-50 font-display text-[7px] uppercase tracking-[0.55em] opacity-70">
-          <textPath href="#hero-text-path" startOffset="0%">
-            Pratik Singh · iOS engineer · AI · Investor · Pratik Singh · iOS engineer · AI · Investor ·
-          </textPath>
-        </text>
-      </svg>
-
-      {/* The photo — perfect circle, no frame */}
-      <div className="absolute inset-[16%] overflow-hidden rounded-full ring-1 ring-white/10 shadow-[0_30px_80px_-30px_rgba(94,234,212,0.55)]">
-        <img
-          src={profile.profileImage}
-          alt={profile.name}
-          className="h-full w-full object-cover"
-        />
+    {/* Signature block — floats bottom-left as if handwritten in the corner */}
+    <div className="absolute bottom-4 left-2 md:bottom-8 md:left-6">
+      <div className="font-display text-2xl italic text-ink-50/90 md:text-3xl">
+        — pratik
       </div>
+      <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.3em] text-ink-200/60">
+        est. {profile.careerStartYear}
+      </div>
+    </div>
 
-      {/* Availability marker — bottom center */}
-      <div className="absolute bottom-[2%] left-1/2 -translate-x-1/2">
-        <div className="flex items-center gap-2 rounded-full border border-white/15 bg-ink-950/80 px-3.5 py-1.5 font-mono text-[11px] backdrop-blur-md">
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
-          </span>
-          <span className="text-ink-100">available for work</span>
-        </div>
+    {/* Availability marker — floats top-right */}
+    <div className="absolute right-2 top-6 md:right-6">
+      <div className="flex items-center gap-2 font-mono text-[11px] text-ink-100">
+        <span className="relative flex h-2 w-2">
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
+          <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+        </span>
+        <span className="tracking-widest uppercase">available</span>
       </div>
     </div>
   </div>
