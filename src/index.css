@@ -1,3 +1,82 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    @apply bg-ink-950 text-ink-100 font-sans antialiased;
+    background-image:
+      radial-gradient(ellipse 80% 60% at 30% -10%, rgba(94, 234, 212, 0.14), transparent 60%),
+      radial-gradient(ellipse 70% 55% at 90% 20%, rgba(244, 114, 182, 0.12), transparent 60%);
+    background-attachment: fixed;
+  }
+  ::selection {
+    background: #5eead4;
+    color: #0a0a0f;
+  }
+  h1, h2, h3, h4, h5 {
+    @apply font-display;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-6xl px-6 md:px-10;
+  }
+  .chip {
+    @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs font-mono text-ink-200;
+  }
+  .card {
+    @apply relative rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur transition;
+  }
+  .card:hover {
+    @apply border-accent/40 bg-white/[0.05];
+    box-shadow: 0 0 0 1px rgba(94, 234, 212, 0.15), 0 20px 60px -20px rgba(94, 234, 212, 0.35);
+  }
+  .btn-primary {
+    @apply inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-ink-950 transition hover:bg-accent-soft;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-2.5 text-sm font-medium text-ink-100 transition hover:border-accent/60 hover:text-accent;
+  }
+  .link-underline {
+    @apply relative inline-block;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 300ms ease;
+  }
+  .link-underline:hover {
+    background-size: 100% 1px;
+  }
+  .grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.35'/></svg>");
+    opacity: 0.06;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+  }
+  .prose-blog p {
+    @apply my-5 text-ink-100/85 leading-relaxed;
+  }
+  .prose-blog code {
+    @apply rounded bg-white/10 px-1.5 py-0.5 font-mono text-sm text-accent;
+  }
+  .prose-blog pre {
+    @apply my-6 overflow-x-auto rounded-xl border border-white/10 bg-black/60 p-4 font-mono text-sm;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #0a0a0f; }
+::-webkit-scrollbar-thumb { background: #2a2a35; border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: #5eead4; }
