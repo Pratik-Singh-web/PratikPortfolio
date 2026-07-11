@@ -7,21 +7,86 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
   }
+
+  /* ─── LIGHT MODE (default — html WITHOUT .dark) ─────────────────── */
   body {
-    @apply bg-ink-950 text-ink-100 font-sans antialiased;
+    background-color: #f7f5ef;
+    color: #0f0f16;
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    background-image:
+      radial-gradient(ellipse 80% 60% at 30% -10%, rgba(13, 148, 136, 0.10), transparent 60%),
+      radial-gradient(ellipse 70% 55% at 90% 20%, rgba(190, 24, 93, 0.08), transparent 60%);
+    background-attachment: fixed;
+    transition: background-color 400ms ease, color 400ms ease;
+  }
+
+  /* ─── DARK MODE (html.dark) ─────────────────────────────────────── */
+  html.dark body {
+    background-color: #0a0a0f;
+    color: #f5f0e6;
     background-image:
       radial-gradient(ellipse 80% 60% at 30% -10%, rgba(94, 234, 212, 0.14), transparent 60%),
       radial-gradient(ellipse 70% 55% at 90% 20%, rgba(244, 114, 182, 0.12), transparent 60%);
-    background-attachment: fixed;
   }
+
   ::selection {
     background: #5eead4;
     color: #0a0a0f;
   }
+
   h1, h2, h3, h4, h5 {
     @apply font-display;
     letter-spacing: -0.02em;
   }
+}
+
+/* ─── LIGHT MODE overrides for the hard-coded palette ───────────── */
+/* We designed the site dark-first, so the light palette below
+   re-skins the tailwind ink-* and white/opacity classes when
+   the html element does NOT have the `dark` class. */
+html:not(.dark) .bg-ink-950 { background-color: #f7f5ef !important; }
+html:not(.dark) .bg-ink-900 { background-color: #ffffff !important; }
+html:not(.dark) .bg-ink-800 { background-color: #efece3 !important; }
+html:not(.dark) .bg-ink-950\/80 { background-color: rgba(247, 245, 239, 0.80) !important; }
+html:not(.dark) .bg-ink-950\/70 { background-color: rgba(247, 245, 239, 0.70) !important; }
+html:not(.dark) .bg-ink-950\/95 { background-color: rgba(247, 245, 239, 0.95) !important; }
+
+html:not(.dark) .text-ink-50  { color: #0a0a0f !important; }
+html:not(.dark) .text-ink-100 { color: #1a1a22 !important; }
+html:not(.dark) .text-ink-200 { color: #3a3a48 !important; }
+html:not(.dark) .text-ink-100\/85,
+html:not(.dark) .text-ink-100\/90 { color: rgba(26, 26, 34, 0.9) !important; }
+html:not(.dark) .text-ink-200\/80 { color: rgba(58, 58, 72, 0.85) !important; }
+html:not(.dark) .text-ink-200\/70 { color: rgba(58, 58, 72, 0.75) !important; }
+html:not(.dark) .text-ink-200\/60 { color: rgba(58, 58, 72, 0.65) !important; }
+html:not(.dark) .text-ink-200\/50 { color: rgba(58, 58, 72, 0.55) !important; }
+html:not(.dark) .text-ink-200\/40 { color: rgba(58, 58, 72, 0.45) !important; }
+html:not(.dark) .text-ink-200\/30 { color: rgba(58, 58, 72, 0.30) !important; }
+
+/* border / hairlines */
+html:not(.dark) .border-white\/10 { border-color: rgba(10, 10, 15, 0.10) !important; }
+html:not(.dark) .border-white\/15 { border-color: rgba(10, 10, 15, 0.15) !important; }
+
+/* frosted surfaces */
+html:not(.dark) .bg-white\/\[0\.02\] { background-color: rgba(10, 10, 15, 0.02) !important; }
+html:not(.dark) .bg-white\/\[0\.03\] { background-color: rgba(10, 10, 15, 0.03) !important; }
+html:not(.dark) .bg-white\/\[0\.05\] { background-color: rgba(10, 10, 15, 0.05) !important; }
+html:not(.dark) .bg-white\/5  { background-color: rgba(10, 10, 15, 0.05) !important; }
+html:not(.dark) .bg-white\/10 { background-color: rgba(10, 10, 15, 0.08) !important; }
+
+/* deeper accent for readability on cream bg */
+html:not(.dark) .text-accent { color: #0d9488 !important; }
+html:not(.dark) .bg-accent   { background-color: #0d9488 !important; color: #ffffff !important; }
+html:not(.dark) .border-accent { border-color: #0d9488 !important; }
+
+/* marquee bg fades in light mode */
+html:not(.dark) .from-ink-950 { --tw-gradient-from: #f7f5ef !important; }
+html:not(.dark) .to-ink-950   { --tw-gradient-to:   #f7f5ef !important; }
+
+/* card hover glow */
+html:not(.dark) .card:hover {
+  border-color: rgba(13, 148, 136, 0.45) !important;
+  box-shadow: 0 0 0 1px rgba(13, 148, 136, 0.15), 0 20px 60px -20px rgba(13, 148, 136, 0.30) !important;
 }
 
 @layer components {
@@ -34,13 +99,15 @@
   .card {
     @apply relative rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur transition;
   }
-  .card:hover {
+  html.dark .card:hover {
     @apply border-accent/40 bg-white/[0.05];
     box-shadow: 0 0 0 1px rgba(94, 234, 212, 0.15), 0 20px 60px -20px rgba(94, 234, 212, 0.35);
   }
   .btn-primary {
     @apply inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-ink-950 transition hover:bg-accent-soft;
   }
+  html:not(.dark) .btn-primary { color: #ffffff !important; }
+  html:not(.dark) .btn-primary:hover { background-color: #14b8a6 !important; }
   .btn-ghost {
     @apply inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-2.5 text-sm font-medium text-ink-100 transition hover:border-accent/60 hover:text-accent;
   }
@@ -64,6 +131,8 @@
     pointer-events: none;
     mix-blend-mode: overlay;
   }
+  html:not(.dark) .grain::before { opacity: 0.10; mix-blend-mode: multiply; }
+
   .prose-blog p {
     @apply my-5 text-ink-100/85 leading-relaxed;
   }
@@ -73,10 +142,16 @@
   .prose-blog pre {
     @apply my-6 overflow-x-auto rounded-xl border border-white/10 bg-black/60 p-4 font-mono text-sm;
   }
+  html:not(.dark) .prose-blog pre {
+    background-color: #0f0f16 !important;
+    color: #f5f0e6 !important;
+  }
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar { width: 10px; height: 10px; }
-::-webkit-scrollbar-track { background: #0a0a0f; }
-::-webkit-scrollbar-thumb { background: #2a2a35; border-radius: 6px; }
-::-webkit-scrollbar-thumb:hover { background: #5eead4; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.15); border-radius: 6px; }
+html.dark ::-webkit-scrollbar-thumb { background: #2a2a35; }
+::-webkit-scrollbar-thumb:hover { background: #0d9488; }
+html.dark ::-webkit-scrollbar-thumb:hover { background: #5eead4; }
