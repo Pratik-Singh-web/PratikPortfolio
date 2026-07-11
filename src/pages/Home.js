@@ -4,7 +4,6 @@ import { Services } from "../components/home/Services";
 import { Timeline } from "../components/home/Timeline";
 import { Projects } from "../components/home/Projects";
 import { Writing } from "../components/home/Writing";
-import { Testimonials } from "../components/home/Testimonials";
 
 export const Home = ({ onOpenProject, onOpenBlog, onOpenContact }) => (
   <>
@@ -14,6 +13,5 @@ export const Home = ({ onOpenProject, onOpenBlog, onOpenContact }) => (
     <Timeline />
     <Projects onOpen={onOpenProject} />
     <Writing onOpen={onOpenBlog} />
-    <Testimonials />
   </>
 );

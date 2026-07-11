@@ -8,7 +8,7 @@ export const profile = {
   longBio:
     "An iOS Developer & Aspiring AI Engineer building impactful mobile experiences. With a deep curiosity for Artificial Intelligence and experience as a Stock Market Investor, I'm on a mission to merge technology, business acumen, and design to create AI-powered products that simplify lives and solve meaningful problems.",
   yearsExperience: "3+",
-  projectsShipped: "10+",
+  projectsShipped: "15+",
   profileImage: process.env.PUBLIC_URL + "/profile.png",
   social: {
     github: "https://github.com/Pratik-Singh-web",
