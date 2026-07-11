@@ -57,7 +57,7 @@ export const Hero = ({ onOpenContact }) => (
           <div className="mt-14 grid grid-cols-3 gap-8 border-t border-white/10 pt-8">
             <Stat n={profile.yearsExperience} l="Years shipping" />
             <Stat n={profile.projectsShipped} l="Projects built" />
-            <Stat n="4+" l="Years investing" />
+            <Stat n={profile.yearsInvesting} l="Years investing" />
           </div>
         </div>
 

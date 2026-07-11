@@ -1,3 +1,13 @@
+// --- helpers ---------------------------------------------------------
+// Given a start year, returns something like "3+" that grows automatically
+// as the current year advances. Uses floor(current - start) so on Jan 1
+// the number ticks over cleanly.
+const yearsSince = (startYear) => {
+  const diff = new Date().getFullYear() - startYear;
+  return `${Math.max(0, diff)}+`;
+};
+
+// --- profile ---------------------------------------------------------
 export const profile = {
   name: "Pratik Singh",
   handle: "@pratik",
@@ -7,7 +17,19 @@ export const profile = {
   bio: "I build thoughtful mobile products at IndiaMART, tinker with on-device AI, and study the markets on the side.",
   longBio:
     "An iOS Developer & Aspiring AI Engineer building impactful mobile experiences. With a deep curiosity for Artificial Intelligence and experience as a Stock Market Investor, I'm on a mission to merge technology, business acumen, and design to create AI-powered products that simplify lives and solve meaningful problems.",
-  yearsExperience: "3+",
+
+  // Start years — single source of truth. Stats below compute off these.
+  careerStartYear: 2022,   // joined IndiaMART / started shipping iOS
+  investingStartYear: 2020, // started managing personal equity portfolio
+
+  // Derived — auto-updates every calendar year
+  get yearsExperience() {
+    return yearsSince(this.careerStartYear);
+  },
+  get yearsInvesting() {
+    return yearsSince(this.investingStartYear);
+  },
+
   projectsShipped: "15+",
   profileImage: process.env.PUBLIC_URL + "/profile.png",
   social: {
