@@ -3,6 +3,20 @@
 
 export const projects = [
   {
+    slug: "minnie",
+    title: "Minnie",
+    tagline:
+      "Give your AI agent a body — a native macOS desktop pet that talks, listens, and does real work.",
+    description:
+      "Minnie is a native macOS AI desktop pet. A floating 3D character lives on your screen (menu-bar app, no Dock) and drives the AI coding agent you already use — Claude Code out of the box, bring-your-own for Gemini / Codex / Custom. You talk to her by voice; she runs the agent, asks permission out loud before anything risky (\"I want to run pytest. Ok?\"), speaks the result back, and her mood mirrors the agent's live state — thinking, working, happy, stuck. She's a pure skin: the agent CLI holds its own auth and does the reasoning, so Minnie adds zero extra AI cost. On-device voice, local CLI, secrets in the macOS Keychain — private by default. Built in SwiftUI with a real-time 3D character, one-click MCP catalog (GitHub, Notion, Slack, Sentry, Postgres, Figma…), native Sign in with Google for Gmail / Calendar / Chat, and silent profile memory.",
+    imageUrl: "https://placehold.co/1200x800/ff5e8a/0a0a0f?text=Minnie",
+    tags: ["SwiftUI", "macOS", "AI", "Voice", "MCP", "3D"],
+    link: "https://wa.me/917905971073?text=Hi%20Pratik%2C%20I%27d%20love%20early%20access%20to%20Minnie.",
+    linkLabel: "Request early access",
+    year: "2025",
+    status: "In active development · private beta",
+  },
+  {
     slug: "medicare-hybrid",
     title: "MediCare Hybrid",
     tagline:
