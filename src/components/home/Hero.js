@@ -61,71 +61,76 @@ export const Hero = ({ onOpenContact }) => (
           </div>
         </div>
 
-        {/* ─── right side — frameless feathered portrait ─────────────── */}
+        {/* ─── right side — transparent cutout, no dark backdrop ─────── */}
         <Portrait />
       </div>
     </div>
   </section>
 );
 
-// Portrait v4 — completely frameless.
-// The photo edges dissolve into the page via a soft radial mask, with a
-// massive faded serif letterform behind and a floating signature block.
+// Portrait v5 — transparent cutout floating on the page.
+// The photo's own background is removed (public/profile-cutout.png),
+// so we can present the person cleanly on top of the aurora page with
+// no dark frame, no mask, no ring, no card.
 const Portrait = () => (
-  <div className="relative mx-auto flex h-[36rem] w-full max-w-lg items-center justify-center">
-    {/* Giant serif letterform behind everything */}
+  <div className="relative mx-auto flex h-[38rem] w-full max-w-lg items-end justify-center">
+    {/* Big serif letterform behind — page-level, not around the photo */}
     <div
       aria-hidden
       className="pointer-events-none absolute inset-0 flex select-none items-center justify-center overflow-hidden"
     >
-      <span className="font-display text-[32rem] font-black leading-none tracking-tighter text-ink-50 opacity-[0.05]">
+      <span className="font-display text-[26rem] font-black leading-none tracking-tighter text-ink-50 opacity-[0.06]">
         p.
       </span>
     </div>
 
-    {/* Soft accent light behind head area */}
+    {/* Diffuse aurora glow — sits behind the head area */}
     <div
       aria-hidden
-      className="pointer-events-none absolute left-1/2 top-1/3 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full opacity-70 blur-3xl"
+      className="pointer-events-none absolute left-1/2 top-[18%] h-80 w-80 -translate-x-1/2 rounded-full opacity-60 blur-3xl"
       style={{
         background:
-          "radial-gradient(circle, rgba(94,234,212,0.4), rgba(244,114,182,0.25) 50%, transparent 75%)",
+          "radial-gradient(circle, rgba(94,234,212,0.45), rgba(244,114,182,0.25) 55%, transparent 80%)",
       }}
     />
 
-    {/* The photo — feathered edges, no frame at all */}
-    <img
-      src={profile.profileImage}
-      alt={profile.name}
-      className="relative h-[34rem] w-auto max-w-full object-contain"
-      style={{
-        maskImage:
-          "radial-gradient(ellipse 65% 75% at 50% 45%, black 40%, transparent 92%)",
-        WebkitMaskImage:
-          "radial-gradient(ellipse 65% 75% at 50% 45%, black 40%, transparent 92%)",
-      }}
-    />
-
-    {/* Signature block — floats bottom-left as if handwritten in the corner */}
-    <div className="absolute bottom-4 left-2 md:bottom-8 md:left-6">
-      <div className="font-display text-2xl italic text-ink-50/90 md:text-3xl">
-        — pratik
-      </div>
-      <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.3em] text-ink-200/60">
-        est. {profile.careerStartYear}
-      </div>
-    </div>
-
-    {/* Availability marker — floats top-right */}
-    <div className="absolute right-2 top-6 md:right-6">
-      <div className="flex items-center gap-2 font-mono text-[11px] text-ink-100">
+    {/* Floating meta chips — anchored to page corners, not to the photo */}
+    <div className="pointer-events-none absolute right-0 top-4 flex flex-col items-end gap-3 font-mono text-[11px] text-ink-100">
+      <div className="flex items-center gap-2">
         <span className="relative flex h-2 w-2">
           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
           <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
         </span>
-        <span className="tracking-widest uppercase">available</span>
+        <span className="uppercase tracking-widest">available</span>
+      </div>
+      <div className="text-right text-ink-200/70">
+        <div className="text-ink-200/50">based in</div>
+        <div className="text-ink-50">Greater Noida, IN ↗</div>
       </div>
     </div>
+
+    <div className="pointer-events-none absolute bottom-4 left-0 font-display italic text-ink-50/90">
+      <div className="text-3xl">— pratik</div>
+      <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.3em] text-ink-200/60 not-italic">
+        est. {profile.careerStartYear}
+      </div>
+    </div>
+
+    {/* The cutout — no card, no ring, no mask; drop-shadow gives it depth */}
+    <img
+      src={process.env.PUBLIC_URL + "/profile-cutout.png"}
+      alt={profile.name}
+      className="relative z-10 h-[38rem] w-auto max-w-full object-contain"
+      style={{
+        filter:
+          "drop-shadow(0 30px 60px rgba(94,234,212,0.25)) drop-shadow(0 10px 30px rgba(0,0,0,0.4))",
+      }}
+      onError={(e) => {
+        // fall back to original if cutout file isn't present yet
+        e.target.onerror = null;
+        e.target.src = profile.profileImage;
+      }}
+    />
   </div>
 );
 
