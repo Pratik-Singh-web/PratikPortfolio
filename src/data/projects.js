@@ -9,12 +9,34 @@ export const projects = [
       "Give your AI agent a body — a native macOS desktop pet that talks, listens, and does real work.",
     description:
       "Chatbots talk. Minnie does. She's a native macOS AI desktop pet — a floating 3D character that lives on your screen, listens to you by voice, drives the AI coding agent you already use, and asks permission out loud before anything risky.",
-    imageUrl: "https://placehold.co/1200x800/ff5e8a/0a0a0f?text=Minnie",
+    imageUrl: process.env.PUBLIC_URL + "/minnie/thinking.png",
     tags: ["SwiftUI", "macOS", "AI", "Voice", "MCP", "3D"],
     link: "https://wa.me/917905971073?text=Hi%20Pratik%2C%20I%27d%20love%20early%20access%20to%20Minnie.",
     linkLabel: "Request early access",
     year: "2025",
     status: "In active development · private beta",
+
+    gallery: [
+      {
+        src: process.env.PUBLIC_URL + "/minnie/thinking.png",
+        caption: "Thinking",
+        description:
+          "Minnie floats in the corner of your desktop with a live mood pill — here she's mid-task, chewing on a command.",
+        wide: true,
+      },
+      {
+        src: process.env.PUBLIC_URL + "/minnie/idle.png",
+        caption: "Idle",
+        description:
+          "When there's nothing to do, she rests — a subtle idle animation, low visual weight, out of your way.",
+      },
+      {
+        src: process.env.PUBLIC_URL + "/minnie/consent.png",
+        caption: "Consent speech-cloud",
+        description:
+          "Before anything risky (\"rm -rf build/\"), she reads the action out loud and waits on Deny / Allow once / For session — the moat that turns \"AI that does scary things\" into \"AI that asks first.\"",
+      },
+    ],
 
     sections: [
       {

@@ -101,6 +101,51 @@ export const ProjectDetail = ({ slug, onBack, onOpenProject }) => {
             </div>
           )}
 
+          {/* Gallery — screenshots & media with captions */}
+          {project.gallery && project.gallery.length > 0 && (
+            <div className="mt-20">
+              <div className="mb-4 flex items-center gap-3 font-mono text-xs uppercase tracking-widest text-accent">
+                <span className="h-px w-6 bg-accent" /> gallery
+              </div>
+              <h2 className="mb-8 font-display text-3xl font-semibold text-ink-50 md:text-4xl">
+                See it in action
+              </h2>
+              <div className="grid gap-6 md:grid-cols-2">
+                {project.gallery.map((shot, i) => (
+                  <figure
+                    key={i}
+                    className={`card group overflow-hidden ${
+                      shot.wide ? "md:col-span-2" : ""
+                    }`}
+                  >
+                    <div className="relative overflow-hidden">
+                      <img
+                        src={shot.src}
+                        alt={shot.caption}
+                        className="w-full object-cover transition duration-700 group-hover:scale-[1.02]"
+                        loading="lazy"
+                      />
+                    </div>
+                    {(shot.caption || shot.description) && (
+                      <figcaption className="border-t border-white/10 p-5">
+                        {shot.caption && (
+                          <div className="font-mono text-xs uppercase tracking-widest text-accent">
+                            {shot.caption}
+                          </div>
+                        )}
+                        {shot.description && (
+                          <div className="mt-2 text-sm text-ink-100/85 leading-relaxed">
+                            {shot.description}
+                          </div>
+                        )}
+                      </figcaption>
+                    )}
+                  </figure>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Highlights — bullet grid */}
           {project.highlights && project.highlights.length > 0 && (
             <div className="mt-20">
