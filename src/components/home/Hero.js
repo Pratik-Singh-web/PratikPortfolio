@@ -61,7 +61,7 @@ export const Hero = ({ onOpenContact }) => (
           </div>
         </div>
 
-        {/* ─── right side — editorial portrait, no card ─────────────── */}
+        {/* ─── right side — clean circular portrait ───────────────── */}
         <Portrait />
       </div>
     </div>
@@ -69,104 +69,85 @@ export const Hero = ({ onOpenContact }) => (
 );
 
 const Portrait = () => (
-  <div className="relative mx-auto flex w-full max-w-md items-center justify-center py-8 lg:py-0">
-    {/* Soft aurora glow behind */}
+  <div className="relative mx-auto flex w-full max-w-md items-center justify-center py-6 lg:py-0">
+    {/* Massive faded "P" behind everything */}
     <div
-      className="pointer-events-none absolute inset-0 -z-10 rounded-full opacity-70 blur-3xl"
+      aria-hidden
+      className="pointer-events-none absolute inset-0 -z-10 flex select-none items-center justify-center overflow-hidden"
+    >
+      <span className="font-display text-[26rem] font-black leading-none tracking-tighter text-ink-50 opacity-[0.04]">
+        P
+      </span>
+    </div>
+
+    {/* Soft accent glow */}
+    <div
+      className="pointer-events-none absolute inset-8 -z-10 rounded-full opacity-60 blur-3xl"
       style={{
         background:
-          "radial-gradient(ellipse at 30% 30%, rgba(94,234,212,0.35), transparent 55%), radial-gradient(ellipse at 70% 70%, rgba(244,114,182,0.28), transparent 60%)",
+          "radial-gradient(circle at 40% 40%, rgba(94,234,212,0.35), transparent 60%)",
       }}
     />
 
-    {/* Arch-shaped portrait (no card) */}
-    <div className="relative">
-      {/* animated gradient ring hugging the arch */}
-      <div
-        className="absolute -inset-[3px] rounded-t-full rounded-b-[2rem] opacity-70 blur-[1px]"
-        style={{
-          background:
-            "conic-gradient(from 180deg at 50% 50%, #5eead4, #f472b6, #fbbf24, #5eead4)",
-          animation: "shimmer 6s linear infinite",
-          maskImage:
-            "linear-gradient(#000, #000) content-box, linear-gradient(#000, #000)",
-          WebkitMaskImage:
-            "linear-gradient(#000, #000) content-box, linear-gradient(#000, #000)",
-          padding: "3px",
-        }}
-      />
+    <div className="relative aspect-square w-[22rem] md:w-[26rem]">
+      {/* Rotating dashed ring */}
+      <svg
+        viewBox="0 0 200 200"
+        className="absolute inset-0 h-full w-full"
+        style={{ animation: "spin 40s linear infinite" }}
+      >
+        <circle
+          cx="100"
+          cy="100"
+          r="98"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="0.4"
+          strokeDasharray="2 4"
+          className="text-accent opacity-60"
+        />
+      </svg>
 
-      <img
-        src={profile.profileImage}
-        alt={profile.name}
-        className="relative aspect-[4/5] w-[22rem] rounded-t-full rounded-b-[2rem] object-cover shadow-[0_40px_80px_-40px_rgba(94,234,212,0.4)] md:w-[24rem]"
-      />
+      {/* Counter-rotating serif text ring */}
+      <svg
+        viewBox="0 0 200 200"
+        className="absolute inset-0 h-full w-full"
+        style={{ animation: "spin 30s linear infinite reverse" }}
+      >
+        <defs>
+          <path
+            id="hero-text-path"
+            d="M 100,100 m -88,0 a 88,88 0 1,1 176,0 a 88,88 0 1,1 -176,0"
+            fill="none"
+          />
+        </defs>
+        <text className="fill-ink-50 font-display text-[7px] uppercase tracking-[0.55em] opacity-70">
+          <textPath href="#hero-text-path" startOffset="0%">
+            Pratik Singh · iOS engineer · AI · Investor · Pratik Singh · iOS engineer · AI · Investor ·
+          </textPath>
+        </text>
+      </svg>
 
-      {/* Rotating circular stamp — bottom-left of portrait */}
-      <RotatingStamp />
-
-      {/* Floating "online" pill — top right */}
-      <div className="absolute -right-3 top-6 flex items-center gap-2 rounded-full border border-white/15 bg-ink-950/70 px-3 py-1.5 font-mono text-xs backdrop-blur-md md:-right-8">
-        <span className="relative flex h-2 w-2">
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
-          <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
-        </span>
-        <span className="text-ink-100">online</span>
+      {/* The photo — perfect circle, no frame */}
+      <div className="absolute inset-[16%] overflow-hidden rounded-full ring-1 ring-white/10 shadow-[0_30px_80px_-30px_rgba(94,234,212,0.55)]">
+        <img
+          src={profile.profileImage}
+          alt={profile.name}
+          className="h-full w-full object-cover"
+        />
       </div>
 
-      {/* Floating location — bottom right */}
-      <div className="absolute -right-4 bottom-16 rounded-2xl border border-white/15 bg-ink-950/70 px-3 py-2 font-mono text-xs backdrop-blur-md md:-right-10">
-        <div className="text-ink-200/70">based in</div>
-        <div className="text-ink-50">Greater Noida ↗</div>
-      </div>
-
-      {/* Floating role tag — left middle */}
-      <div className="absolute -left-2 top-1/2 -translate-y-1/2 md:-left-8">
-        <div className="rotate-[-8deg] rounded-full border border-accent/40 bg-ink-950/70 px-3 py-1.5 font-mono text-[10px] uppercase tracking-widest text-accent backdrop-blur-md">
-          ✦ iOS · AI · Markets
+      {/* Availability marker — bottom center */}
+      <div className="absolute bottom-[2%] left-1/2 -translate-x-1/2">
+        <div className="flex items-center gap-2 rounded-full border border-white/15 bg-ink-950/80 px-3.5 py-1.5 font-mono text-[11px] backdrop-blur-md">
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+          </span>
+          <span className="text-ink-100">available for work</span>
         </div>
       </div>
     </div>
-  </div>
-);
-
-const RotatingStamp = () => (
-  <div
-    className="absolute -bottom-6 -left-6 h-24 w-24 md:-bottom-8 md:-left-8"
-    style={{ animation: "spin 22s linear infinite" }}
-  >
-    <svg viewBox="0 0 100 100" className="h-full w-full">
-      <defs>
-        <path
-          id="stamp-circle"
-          d="M 50,50 m -36,0 a 36,36 0 1,1 72,0 a 36,36 0 1,1 -72,0"
-          fill="none"
-        />
-      </defs>
-      <circle
-        cx="50"
-        cy="50"
-        r="42"
-        fill="none"
-        stroke="currentColor"
-        strokeOpacity="0.15"
-        strokeWidth="0.5"
-        className="text-ink-50"
-      />
-      <text className="fill-accent font-mono text-[8.5px] uppercase tracking-[0.28em]">
-        <textPath href="#stamp-circle">
-          Available for work · Available for work ·
-        </textPath>
-      </text>
-      <text
-        x="50"
-        y="55"
-        textAnchor="middle"
-        className="fill-accent font-display text-[14px] italic"
-      >
-        ✦
-      </text>
-    </svg>
   </div>
 );
 
