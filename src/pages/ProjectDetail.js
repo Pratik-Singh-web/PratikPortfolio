@@ -72,13 +72,20 @@ export const ProjectDetail = ({ slug, onBack, onOpenProject }) => {
             {project.description}
           </p>
 
+          {project.status && (
+            <div className="mt-8 inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/5 px-3 py-1 font-mono text-xs uppercase tracking-widest text-accent">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+              {project.status}
+            </div>
+          )}
+
           <a
             href={project.link}
             target="_blank"
             rel="noopener noreferrer"
             className="mt-10 btn-primary"
           >
-            View source on GitHub <ExternalIcon />
+            {project.linkLabel || "View source on GitHub"} <ExternalIcon />
           </a>
         </div>
 
