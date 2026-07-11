@@ -79,11 +79,55 @@ export const ProjectDetail = ({ slug, onBack, onOpenProject }) => {
             </div>
           )}
 
+          {/* Rich sections: What we built · How we built it · Why useful */}
+          {project.sections && project.sections.length > 0 && (
+            <div className="mt-20 space-y-16">
+              {project.sections.map((s, i) => (
+                <div key={s.heading}>
+                  <div className="mb-4 flex items-center gap-3 font-mono text-xs uppercase tracking-widest text-accent">
+                    <span className="h-px w-6 bg-accent" />
+                    section 0{i + 1}
+                  </div>
+                  <h2 className="font-display text-3xl font-semibold text-ink-50 md:text-5xl">
+                    {s.heading}
+                  </h2>
+                  <div className="mt-6 space-y-5 text-lg leading-relaxed text-ink-100/85">
+                    {s.body.split("\n\n").map((para, j) => (
+                      <p key={j} className="whitespace-pre-line">{para}</p>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Highlights — bullet grid */}
+          {project.highlights && project.highlights.length > 0 && (
+            <div className="mt-20">
+              <div className="mb-4 flex items-center gap-3 font-mono text-xs uppercase tracking-widest text-accent">
+                <span className="h-px w-6 bg-accent" /> highlights
+              </div>
+              <h2 className="mb-8 font-display text-3xl font-semibold text-ink-50 md:text-4xl">
+                What makes it different
+              </h2>
+              <ul className="grid gap-3 sm:grid-cols-2">
+                {project.highlights.map((h, i) => (
+                  <li
+                    key={i}
+                    className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 leading-relaxed text-ink-100/90"
+                  >
+                    {h}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
           <a
             href={project.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-10 btn-primary"
+            className="mt-16 btn-primary"
           >
             {project.linkLabel || "View source on GitHub"} <ExternalIcon />
           </a>

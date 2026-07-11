@@ -8,13 +8,41 @@ export const projects = [
     tagline:
       "Give your AI agent a body — a native macOS desktop pet that talks, listens, and does real work.",
     description:
-      "Minnie is a native macOS AI desktop pet. A floating 3D character lives on your screen (menu-bar app, no Dock) and drives the AI coding agent you already use — Claude Code out of the box, bring-your-own for Gemini / Codex / Custom. You talk to her by voice; she runs the agent, asks permission out loud before anything risky (\"I want to run pytest. Ok?\"), speaks the result back, and her mood mirrors the agent's live state — thinking, working, happy, stuck. She's a pure skin: the agent CLI holds its own auth and does the reasoning, so Minnie adds zero extra AI cost. On-device voice, local CLI, secrets in the macOS Keychain — private by default. Built in SwiftUI with a real-time 3D character, one-click MCP catalog (GitHub, Notion, Slack, Sentry, Postgres, Figma…), native Sign in with Google for Gmail / Calendar / Chat, and silent profile memory.",
+      "Chatbots talk. Minnie does. She's a native macOS AI desktop pet — a floating 3D character that lives on your screen, listens to you by voice, drives the AI coding agent you already use, and asks permission out loud before anything risky.",
     imageUrl: "https://placehold.co/1200x800/ff5e8a/0a0a0f?text=Minnie",
     tags: ["SwiftUI", "macOS", "AI", "Voice", "MCP", "3D"],
     link: "https://wa.me/917905971073?text=Hi%20Pratik%2C%20I%27d%20love%20early%20access%20to%20Minnie.",
     linkLabel: "Request early access",
     year: "2025",
     status: "In active development · private beta",
+
+    sections: [
+      {
+        heading: "What we built",
+        body:
+          "Minnie is a menu-bar-only macOS app (no Dock icon) with a floating 3D character that sits on top of your desktop. You wake her by saying \"Baby\" or \"Hey Baby,\" give her a spoken command, and she runs the task on a real AI coding agent — Claude Code out of the box, or bring-your-own Gemini / Codex / Antigravity / Custom. She reads the result back in her own voice, and her mood animates in real time to mirror the agent's state — idle, thinking, working, happy, stuck.\n\nThe key idea: she's a \"pure skin.\" The agent CLI already does the reasoning and holds its own auth, so Minnie adds zero extra AI cost on top of what you already pay your provider.",
+      },
+      {
+        heading: "How we built it",
+        body:
+          "The whole app is native SwiftUI with a real-time 3D character rig on top — four species, eight moods. The voice layer is credit-aware and falls through gracefully: cloud STT/TTS when the user opts in → on-device Whisper → Apple's system TTS as the last resort, so voice never breaks.\n\nA custom \"consent speech-cloud\" wraps every risky tool call — she reads the intended action out loud (\"I want to run pytest. Ok?\") and takes yes / no / always by voice or click. One-click MCP Connections plug her into GitHub, Notion, Slack, Sentry, Postgres, Figma, and custom servers; native \"Sign in with Google\" handles Gmail / Calendar / Chat. Secrets live in the macOS Keychain; there's no screen capture, no telemetry, and the entire agent CLI runs locally.",
+      },
+      {
+        heading: "Why it's useful",
+        body:
+          "Chatbots are stuck inside browser tabs. Minnie lives on your desktop and executes — she can run tests, edit files, hit APIs, ship a commit, or read your calendar, all while narrating what she's about to do so you never lose control. Because she's a skin over your existing agent's CLI, she doesn't double-bill you for tokens, and because voice + agent both run locally, your conversations and code stay on your Mac. The consent layer is the moat: it turns \"AI that does scary things\" into \"AI that asks first, every single time.\"",
+      },
+    ],
+
+    highlights: [
+      "🐾 Real-time 3D character with 4 species and 8 moods that read the agent's live state at a glance",
+      "🎙️ Voice-first: wake word, hands-free commands, spoken replies — cloud → on-device Whisper → Apple",
+      "✋ Consent speech-cloud — every risky tool asks out loud; answer yes / no / always by voice or click",
+      "🧠 Drives Claude Code with full Bash / file / web / MCP access; bring your own agent too",
+      "🔌 One-click MCP catalog (GitHub, Notion, Slack, Sentry, Postgres, Figma) + native Sign in with Google",
+      "💾 Silent profile memory, an activity timeline, and a 'What can Minnie do?' capabilities screen",
+      "🔒 Local & private — on-device voice, local agent CLI, secrets in the macOS Keychain, no telemetry",
+    ],
   },
   {
     slug: "medicare-hybrid",
