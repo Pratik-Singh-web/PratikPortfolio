@@ -32,11 +32,15 @@ export const profile = {
 
   projectsShipped: "15+",
   profileImage: process.env.PUBLIC_URL + "/profile.png",
+  phone: "+917905971073",
+  phoneDisplay: "+91 79059 71073",
   social: {
     github: "https://github.com/Pratik-Singh-web",
     linkedin: "https://www.linkedin.com/in/pratik2001/",
     instagram: "https://www.instagram.com/sym6ol_/",
-    email: "mailto:pratik.singh1@indiamart.com",
+    email: "mailto:pratiksingh30701@gmail.com",
+    tel: "tel:+917905971073",
+    whatsapp: "https://wa.me/917905971073?text=Hi%20Pratik%2C%20saw%20your%20portfolio%20%E2%80%94",
   },
   stack: [
     "Swift",

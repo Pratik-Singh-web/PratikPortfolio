@@ -1,5 +1,5 @@
 import { profile } from "../../data/profile";
-import { ArrowRightIcon } from "../ui/Icon";
+import { ArrowRightIcon, PhoneIcon, WhatsappIcon } from "../ui/Icon";
 
 export const Hero = ({ onOpenContact }) => (
   <section
@@ -75,9 +75,17 @@ export const Hero = ({ onOpenContact }) => (
           <a href="#projects" className="btn-primary">
             See my work <ArrowRightIcon />
           </a>
-          <button onClick={onOpenContact} className="btn-ghost">
-            Book a call
-          </button>
+          <a href={profile.social.tel} className="btn-ghost">
+            <PhoneIcon /> Call
+          </a>
+          <a
+            href={profile.social.whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-ghost"
+          >
+            <WhatsappIcon /> WhatsApp
+          </a>
         </div>
 
         {/* Stats row anchoring the hero */}

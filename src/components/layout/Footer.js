@@ -1,7 +1,13 @@
 import { profile } from "../../data/profile";
-import { GithubIcon, LinkedinIcon, InstagramIcon } from "../ui/Icon";
+import {
+  GithubIcon,
+  LinkedinIcon,
+  InstagramIcon,
+  PhoneIcon,
+  WhatsappIcon,
+} from "../ui/Icon";
 
-export const Footer = ({ onOpenContact }) => (
+export const Footer = () => (
   <footer id="contact" className="relative overflow-hidden border-t border-white/10 bg-ink-950">
     <div className="absolute inset-0 bg-aurora opacity-30" />
     <div className="container-x relative py-24">
@@ -15,12 +21,20 @@ export const Footer = ({ onOpenContact }) => (
         </h2>
         <p className="mt-6 text-lg text-ink-200/80">
           Working on a mobile product, an AI idea, or want a second opinion?
-          I read every message.
+          Ring me directly or drop a message on WhatsApp.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
-          <button onClick={onOpenContact} className="btn-primary">
-            Start a conversation
-          </button>
+          <a href={profile.social.tel} className="btn-primary">
+            <PhoneIcon /> Call {profile.phoneDisplay}
+          </a>
+          <a
+            href={profile.social.whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-ghost"
+          >
+            <WhatsappIcon /> WhatsApp
+          </a>
           <a href={profile.social.email} className="btn-ghost">
             Or email me
           </a>

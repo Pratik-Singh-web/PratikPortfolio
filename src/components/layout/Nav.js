@@ -1,6 +1,14 @@
 import { useEffect, useState } from "react";
 import { useTheme } from "../../context/ThemeContext";
-import { SunIcon, MoonIcon, MenuIcon, CloseIcon } from "../ui/Icon";
+import { profile } from "../../data/profile";
+import {
+  SunIcon,
+  MoonIcon,
+  MenuIcon,
+  CloseIcon,
+  PhoneIcon,
+  WhatsappIcon,
+} from "../ui/Icon";
 
 const links = [
   { href: "#about", label: "About" },
@@ -10,7 +18,7 @@ const links = [
   { href: "#contact", label: "Contact" },
 ];
 
-export const Nav = ({ onHome, onOpenContact }) => {
+export const Nav = ({ onHome }) => {
   const { theme, toggleTheme } = useTheme();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -63,12 +71,27 @@ export const Nav = ({ onHome, onOpenContact }) => {
               >
                 {theme === "dark" ? <SunIcon /> : <MoonIcon />}
               </button>
-              <button
-                onClick={onOpenContact}
+
+              {/* Direct-contact icon pair — always visible */}
+              <a
+                href={profile.social.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="WhatsApp"
+                title="Message on WhatsApp"
+                className="hidden rounded-full border border-white/10 p-2 text-ink-100 transition hover:border-accent hover:text-accent md:inline-flex"
+              >
+                <WhatsappIcon />
+              </a>
+              <a
+                href={profile.social.tel}
+                aria-label="Call"
+                title={`Call ${profile.phoneDisplay}`}
                 className="hidden md:inline-flex btn-primary"
               >
-                Book a call
-              </button>
+                <PhoneIcon /> Call
+              </a>
+
               <button
                 onClick={() => setOpen((o) => !o)}
                 aria-label="Menu"
@@ -100,15 +123,22 @@ export const Nav = ({ onHome, onOpenContact }) => {
                     {l.label}
                   </a>
                 ))}
-                <button
-                  onClick={() => {
-                    setOpen(false);
-                    onOpenContact();
-                  }}
+                <a
+                  href={profile.social.tel}
+                  onClick={() => setOpen(false)}
                   className="mt-3 btn-primary justify-center"
                 >
-                  Book a call
-                </button>
+                  <PhoneIcon /> Call {profile.phoneDisplay}
+                </a>
+                <a
+                  href={profile.social.whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setOpen(false)}
+                  className="btn-ghost justify-center"
+                >
+                  <WhatsappIcon /> WhatsApp
+                </a>
               </div>
             </div>
           </div>
